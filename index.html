@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Muskan Verma's portfolio. An AIML Enthusiast, Web Developer, and Problem Solver."/>
+  <meta name="keywords" content="Muskan Verma, Portfolio, AI, Machine Learning, Web Developer, B.Tech"/>
+  <title>Muskan Verma | Portfolio</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome (for icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- AOS Library for Scroll Animations -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+
+  <style>
+    /* CSS Variables for Theming (Light/Dark Mode) */
+    :root {
+      --bg-color: #f4f7fc;
+      --text-color: #333;
+      --card-bg: #ffffff;
+      --shadow-color: rgba(0, 0, 0, 0.1);
+      --highlight-color: #6a5acd;
+      --highlight-text: #ffffff;
+      --secondary-color: #555;
+      --border-color: #e0e0e0;
+      --toggle-bg: #333;
+      --toggle-icon: '🌙';
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #1a1a2e;
+      --text-color: #e0e0e0;
+      --card-bg: #162447;
+      --shadow-color: rgba(0, 0, 0, 0.4);
+      --highlight-color: #7f5af0;
+      --highlight-text: #ffffff;
+      --secondary-color: #a0a0a0;
+      --border-color: #444;
+      --toggle-bg: #fff;
+      --toggle-icon: '☀️';
+    }
+
+    /* General Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s, color 0.3s;
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    h1, h2, h3 {
+      font-weight: 600;
+      color: var(--highlight-color);
+    }
+    
+    h2 {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 4rem; /* Increased margin for better spacing */
+      position: relative;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--highlight-color);
+      border-radius: 2px;
+    }
+    
+    .highlight {
+      color: var(--highlight-color);
+    }
+
+    /* Dark Mode Toggle */
+    #darkToggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      border: none;
+      background-color: var(--card-bg);
+      color: var(--text-color);
+      font-size: 1.5rem;
+      cursor: pointer;
+      z-index: 1000;
+      box-shadow: 0 4px 10px var(--shadow-color);
+      transition: transform 0.2s;
+    }
+    #darkToggle:hover {
+      transform: scale(1.1);
+    }
+    #darkToggle::before {
+        content: var(--toggle-icon);
+    }
+
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #fff;
+      position: relative;
+      background: linear-gradient(45deg, #6a5acd, #7f5af0, #24243e);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .hero-content {
+      z-index: 1;
+      padding: 1rem;
+    }
+
+    .profile-pic {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 5px solid #fff;
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      font-weight: 300;
+    }
+    
+    #typed-text {
+        color: #e0e0e0;
+        font-weight: 400;
+    }
+
+    .hero nav {
+      margin-top: 2rem;
+    }
+
+    .hero nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 15px;
+      font-size: 1.1rem;
+      font-weight: 400;
+      padding: 8px 15px;
+      border-radius: 20px;
+      transition: background-color 0.3s;
+    }
+
+    .hero nav a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Section Styles */
+    section {
+      padding: 6rem 0;
+    }
+    
+    #about {
+        background: var(--card-bg);
+    }
+
+    .about-text p {
+      text-align: justify;
+      color: var(--secondary-color);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    /* Experience Section (Timeline) */
+    .timeline {
+        position: relative;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .timeline::after {
+        content: '';
+        position: absolute;
+        width: 6px;
+        background-color: var(--highlight-color);
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        margin-left: -3px;
+        border-radius: 3px;
+    }
+
+    .timeline-item {
+        padding: 10px 40px;
+        position: relative;
+        background-color: inherit;
+        width: 50%;
+    }
+    
+    /* The circles on the timeline */
+    .timeline-item::after {
+        content: '';
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        right: -17px;
+        background-color: var(--card-bg);
+        border: 4px solid var(--highlight-color);
+        top: 15px;
+        border-radius: 50%;
+        z-index: 1;
+    }
+
+    .timeline-item.left {
+        left: 0;
+    }
+
+    .timeline-item.right {
+        left: 50%;
+    }
+    
+    .timeline-item.left::before {
+        content: " ";
+        height: 0;
+        position: absolute;
+        top: 22px;
+        width: 0;
+        z-index: 1;
+        right: 30px;
+        border: medium solid var(--card-bg);
+        border-width: 10px 0 10px 10px;
+        border-color: transparent transparent transparent var(--card-bg);
+    }
+
+    .timeline-item.right::before {
+        content: " ";
+        height: 0;
+        position: absolute;
+        top: 22px;
+        width: 0;
+        z-index: 1;
+        left: 30px;
+        border: medium solid var(--card-bg);
+        border-width: 10px 10px 10px 0;
+        border-color: transparent var(--card-bg) transparent transparent;
+    }
+    
+    .timeline-item.right::after {
+        left: -16px;
+    }
+
+    .timeline-content {
+        padding: 20px 30px;
+        background-color: var(--card-bg);
+        position: relative;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px var(--shadow-color);
+        border: 1px solid var(--border-color);
+    }
+    
+    .timeline-content h3 {
+        font-size: 1.4rem;
+        margin-bottom: 5px;
+    }
+    
+    .timeline-content .date {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--secondary-color);
+        margin-bottom: 10px;
+    }
+    
+    .timeline-content p {
+        font-size: 0.95rem;
+        color: var(--secondary-color);
+    }
+
+
+    /* Project Section */
+    #projects {
+        background: var(--card-bg);
+    }
+    
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+    
+    .project-card {
+      background: var(--bg-color);
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px var(--shadow-color);
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px var(--shadow-color);
+    }
+
+    .project-card h3 {
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+    
+    .project-card p {
+        color: var(--secondary-color);
+        margin-bottom: 1rem;
+        flex-grow: 1;
+    }
+    
+    .project-card .tech-stack {
+        font-weight: 600;
+        color: var(--text-color);
+        margin-bottom: 1.5rem;
+    }
+
+    .project-links a {
+      text-decoration: none;
+      color: var(--highlight-color);
+      margin-right: 1.5rem;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    .project-links a:hover {
+      text-decoration: underline;
+    }
+
+    .project-links i {
+      margin-right: 5px;
+    }
+
+    /* Certificates Section */
+    .certificate-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .certificate-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      padding: 1.5rem;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s;
+    }
+    
+    .certificate-card:hover {
+        transform: scale(1.03);
+    }
+    
+    .certificate-card h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .certificate-card p {
+        color: var(--secondary-color);
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+    
+    .certificate-card .btn {
+        text-decoration: none;
+        color: var(--highlight-text);
+        background: var(--highlight-color);
+        padding: 10px 15px;
+        border-radius: 5px;
+        text-align: center;
+        font-weight: 600;
+        transition: background-color 0.3s;
+    }
+    
+    .certificate-card .btn:hover {
+        background: #5a4ab9;
+    }
+
+    /* Contact Section */
+    #contact {
+        background: var(--card-bg);
+    }
+    
+    .contact-form {
+      max-width: 700px;
+      margin: 0 auto 2rem auto;
+      text-align: center;
+    }
+
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .contact-form input:focus, .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--highlight-color);
+      box-shadow: 0 0 8px rgba(106, 90, 205, 0.5);
+    }
+
+    .contact-form button {
+      padding: 15px 30px;
+      border: none;
+      background: var(--highlight-color);
+      color: var(--highlight-text);
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      font-weight: 600;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .contact-form button:hover {
+      background: #5a4ab9;
+      transform: translateY(-3px);
+    }
+    
+    .contact-links {
+        text-align: center;
+    }
+
+    .contact-links a {
+      font-size: 2rem;
+      margin: 0 1rem;
+      color: var(--secondary-color);
+      transition: color 0.3s, transform 0.3s;
+      display: inline-block;
+    }
+    
+    .contact-links a:hover {
+        color: var(--highlight-color);
+        transform: scale(1.2);
+    }
+    
+    .contact-email {
+        text-align: center;
+        margin-top: 2rem;
+    }
+    .contact-email a {
+        color: var(--highlight-color);
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #0f0f1a;
+      color: var(--secondary-color);
+      border-top: 1px solid var(--border-color);
+    }
+
+    /* Responsive Design */
+    @media screen and (max-width: 768px) {
+        .hero h1 { font-size: 2.5rem; }
+        .hero p { font-size: 1.2rem; }
+        h2 { font-size: 2rem; }
+        .about-content { flex-direction: column; text-align: center; }
+
+        /* Timeline adjustments for mobile */
+        .timeline::after {
+            left: 31px;
+        }
+        .timeline-item {
+            width: 100%;
+            padding-left: 70px;
+            padding-right: 25px;
+        }
+        .timeline-item.left::before, .timeline-item.right::before {
+            left: 60px;
+            border: medium solid var(--card-bg);
+            border-width: 10px 10px 10px 0;
+            border-color: transparent var(--card-bg) transparent transparent;
+        }
+        .timeline-item.left::after, .timeline-item.right::after {
+            left: 15px;
+        }
+        .timeline-item.right {
+            left: 0%;
+        }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Dark Mode Toggle Button -->
+  <button id="darkToggle" aria-label="Toggle dark mode"></button>
+
+  <!-- Hero Section -->
+  <header class="hero" id="home">
+    <div class="hero-content" data-aos="fade-in">
+      <img src="images/" alt="Muskan Verma" class="profile-pic"/>
+      <h1>I'm <span class="highlight">Muskan Verma</span></h1>
+      <p><span id="typed-text"></span></p>
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 data-aos="fade-up">About Me</h2>
+            <div class="about-text" data-aos="fade-up">
+                <p>
+                    I'm a third-year B.Tech student passionate about Artificial Intelligence, Machine Learning, and Full-Stack Web Development. I love transforming complex problems into simple, scalable, and human-centric tech solutions.
+                    <br><br>
+                    With hands-on experience in building AI models, prompt engineering, LLM-based apps, and responsive web applications, I enjoy exploring the intersection of design and intelligence in tech. From data-driven insights to visually engaging UI/UX, I aim to build tools that make life easier and smarter.
+                    <br><br>
+                    Currently expanding my skills in Deep Learning, GenAI, and cloud-based deployment, while actively contributing to innovative projects and collaborative tech communities. Let’s connect and build something impactful together. 🚀
+                </p>
+            </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <h2 data-aos="fade-up">My Experience</h2>
+            <div class="timeline" data-aos="fade-up">
+                
+                <!-- Timeline Item 1 -->
+                <div class="timeline-item left" data-aos="fade-right">
+                    <div class="timeline-content">
+                        <h3>Python developer Intern</h3>
+                        <p class="date">Oasis InfoByte| July 2024 - Aug 2025</p>
+                        <p>
+                           "Completed a 1-month virtual internship in Python Programming under AICTE OIB-SIP. Gained hands-on experience in developing Python-based projects and problem-solving using core concepts."
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 2 -->
+                <div class="timeline-item right" data-aos="fade-left">
+                    <div class="timeline-content">
+                        <h3>Vice President</h3>
+                        <p class="date">TechniC Club AI&ML (PIET) | AUG 2024 - july 2025</p>
+                        <p>
+                           Led technical initiatives, workshops, and events fostering innovation and collaboration in AIML.
+Coordinated with peers and faculty to organize coding contests, project showcases, and knowledge sessions.
+
+
+                        </p>
+                    </div>
+                </div>
+                <div class="timeline-item left" data-aos="fade-right">
+                    <div class="timeline-content">
+                        <h3>Member</h3>
+                        <p class="date">Women Techmakers | Apr 2025 - Present</p>
+                        <p>
+                           Actively engaged in initiatives promoting diversity in tech through events, workshops, and networking.
+Participated in community discussions and skill-building programs to empower women
+                        </p>
+                    </div>
+                </div>
+                
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+      <div class="container">
+        <h2 data-aos="fade-up">My Projects</h2>
+        <div class="project-grid">
+          
+          <div class="project-card" data-aos="fade-up">
+            <h3>FashionAura</h3>
+            <p>An AI-powered fashion recommendation web app. I contributed to building a responsive and dynamic front-end using React.</p>
+            <div class="project-tech-stack">
+                <p class="tech-stack">Tech: React.js, CSS</p>
+            </div>
+            <div class="project-links">
+              <a href="https://adishri-ab.github.io/FASHION-AURA/" target="_blank"><i class="fas fa-eye"></i> Live Demo</a>
+              <a href="https://github.com/MuskanVerma024/FASHION-AURA" target="_blank"><i class="fab fa-github"></i> View Repo</a>
+            </div>
+          </div>
+
+          <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+            <h3>Choose Your Own Adventure</h3>
+            <p>An interactive branching-story game where user choices shape the narrative. Built with Python to demonstrate modular logic.</p>
+             <div class="project-tech-stack">
+                <p class="tech-stack">Tech: Python</p>
+             </div>
+            <div class="project-links">
+              <a href="https://github.com/MuskanVerma024/Choose_your_own_adventure" target="_blank"><i class="fab fa-github"></i> View Repo</a>
+            </div>
+          </div>
+          
+          <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+            <h3>Timetable Optimizer</h3>
+            <p>An algorithm that automates class schedule generation, showcasing data processing and optimization techniques.</p>
+             <div class="project-tech-stack">
+                <p class="tech-stack">Tech: HTML, Algorithmic Logic</p>
+             </div>
+            <div class="project-links">
+              <a href="https://github.com/MuskanVerma024/TIMETABLE_OPTIMIZER" target="_blank"><i class="fab fa-github"></i> View Repo</a>
+            </div>
+          </div>
+
+          <div class="project-card" data-aos="fade-up">
+            <h3>Car Parking System</h3>
+            <p>A C++ simulation of parking lot operations, including slot management, timing, and fee computation. A great model of a real-world system.</p>
+             <div class="project-tech-stack">
+                <p class="tech-stack">Tech: C++</p>
+             </div>
+            <div class="project-links">
+              <a href="https://github.com/MuskanVerma024/Car_parking_system" target="_blank"><i class="fab fa-github"></i> View Repo</a>
+            </div>
+          </div>
+
+          <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+            <h3>Tic-Tac-Toe Game</h3>
+            <p>A classic Tic-Tac-Toe game built in Python, featuring win/draw detection, a game board display, and replay functionality.</p>
+             <div class="project-tech-stack">
+                <p class="tech-stack">Tech: Python</p>
+             </div>
+            <div class="project-links">
+              <a href="https://github.com/MuskanVerma024/TIC-TAC-TOE" target="_blank"><i class="fab fa-github"></i> View Repo</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section id="certificates">
+      <div class="container">
+        <h2 class="highlight" data-aos="fade-up">Certificates & Achievements</h2>
+        <div class="certificate-grid" data-aos="fade-up">
+            <div class="certificate-card">
+              <h3>Digital Productivity with AI</h3>
+              <p><strong>Issued by:</strong> UNICEF + Microsoft</p>
+              <a href="#" class="btn" target="_blank">View Certificate</a>
+            </div>
+            <div class="certificate-card">
+              <h3>Data Science and Analytics</h3>
+              <p><strong>Issued by:</strong> HP Life</p>
+              <a href="#" class="btn" target="_blank">View Certificate</a>
+            </div>
+            <div class="certificate-card">
+              <h3>Skill Certification in Python</h3>
+              <p><strong>Issued by:</strong> OneRoadmap</p>
+              <a href="#" class="btn" target="_blank">View Certificate</a>
+            </div>
+            <div class="certificate-card">
+              <h3>Building LLM Applications</h3>
+              <p><strong>Issued by:</strong> NVIDIA</p>
+              <a href="#" class="btn" target="_blank">View Certificate</a>
+            </div>
+            <div class="certificate-card">
+              <h3>ChatGPT for Everyone</h3>
+              <p><strong>Issued by:</strong> GUVI (by HCL)</p>
+              <a href="#" class="btn" target="_blank">View Certificate</a>
+            </div>
+            <div class="certificate-card">
+              <h3>C Certification</h3>
+              <p><strong>Issued by:</strong> Spoken Tutorial, IIT Bombay</p>
+              <a href="#" class="btn" target="_blank">View Certificate</a>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <div class="container" data-aos="fade-up">
+        <h2>Get In Touch</h2>
+        <form class="contact-form" action="https://formspree.io/f/your_form_id" method="POST"> <!-- Replace with your Formspree ID -->
+          <input type="text" name="name" placeholder="Your Name" required />
+          <input type="email" name="email" placeholder="Your Email" required />
+          <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+        <div class="contact-links">
+          <a href="https://linkedin.com/in/muskan-verma-ai-engineer" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="https://github.com/MuskanVerma024" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        </div>
+        <p class="contact-email">
+          Or email me at: <a href="mailto:muskanverma035094@gmail.com">muskanverma035094@gmail.com</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Muskan Verma | Built with ❤️</p>
+  </footer>
+
+  <!-- AOS - Animate on Scroll Library -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  
+  <!-- Typed.js - For Typing Animation -->
+  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+
+  <script>
+    // 1. Initialize AOS (Animate on Scroll)
+    AOS.init({
+        duration: 800,
+        once: true,
+        offset: 50,
+    });
+
+    // 2. Typed.js Animation for Hero Section
+    new Typed('#typed-text', {
+      strings: ['AIML Enthusiast', 'Web Developer', 'Problem Solver', 'Tech Innovator'],
+      typeSpeed: 70,
+      backSpeed: 50,
+      loop: true,
+      smartBackspace: true,
+    });
+    
+    // 3. Dark Mode Toggle Functionality
+    const darkToggle = document.getElementById('darkToggle');
+    const body = document.body;
+
+    // Check for saved theme in localStorage
+    if (localStorage.getItem('theme') === 'dark') {
+      body.setAttribute('data-theme', 'dark');
+    }
+
+    darkToggle.addEventListener('click', () => {
+      if (body.getAttribute('data-theme') === 'dark') {
+        body.removeAttribute('data-theme');
+        localStorage.removeItem('theme');
+      } else {
+        body.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+
+  </script>
+</body>
+</html>
