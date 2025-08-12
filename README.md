@@ -1,0 +1,112 @@
+# Personal Portfolio Website (Built with Flask)
+
+This is a fully responsive personal portfolio website built using the Python Flask web framework. It is designed to showcase my skills, projects, professional experience, and certifications in a clean, interactive, and visually appealing manner.
+
+The website features a dynamic and modern design with smooth animations and a theme toggle for dark/light mode.
+
+---
+
+### Features
+
+-   **Responsive Design:** Looks great on all devices, from mobile phones to desktops.
+-   **Dynamic Hero Section:** Features a "typed text" animation to introduce myself.
+-   **Interactive Experience Timeline:** Clearly visualizes my work experience and roles.
+-   **Project Showcase:** A grid layout to display my key projects with links to live demos and GitHub repositories.
+-   **Certifications Section:** A dedicated area to list and link to my professional certifications.
+-   **Dark/Light Mode:** A theme toggle switch that saves the user's preference in their browser.
+-   **Animations on Scroll:** Subtle and professional animations that activate as the user scrolls down the page.
+-   **Backend Contact Form:** A functional contact form whose submissions are processed by the Flask backend.
+
+---
+
+### Tech Stack
+
+-   **Backend:**
+    -   Python 3
+    -   Flask
+-   **Frontend:**
+    -   HTML5
+    -   CSS3
+    -   JavaScript
+-   **JavaScript Libraries:**
+    -   **AOS (Animate on Scroll):** For scroll animations.
+    -   **Typed.js:** For the typing animation in the hero section.
+    -   **GSAP (GreenSock Animation Platform):** For the 3D mouse-move effect.
+
+---
+
+### Project Structure
+
+The project follows the standard Flask application structure:
+
+```
+/portfolio-project
+|
+|-- app.py              # The main Flask application file
+|
+|-- /static/            # Contains all static files
+|   |-- /css/           # Stylesheets (style.css)
+|   |-- /js/            # JavaScript files (script.js)
+|   |-- /images/        # Image assets (bot.jpg)
+|   |-- /certificates/  # Certificate files (PDFs, JPEGs)
+|
+|-- /templates/         # Contains all HTML templates
+|   |-- index.html      # The main (and only) HTML page
+|
+|-- README.md           # This file
+|-- requirements.txt    # Project dependencies
+```
+
+---
+
+### Getting Started
+
+Follow these instructions to get a copy of the project up and running on your local machine.
+
+#### **Prerequisites**
+
+-   Python 3.8 or newer
+-   `pip` (Python package installer)
+
+#### **Setup and Installation**
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/your-username/your-repo-name.git
+    cd your-repo-name
+    ```
+
+2.  **Create and activate a virtual environment:**
+    -   *On Windows:*
+        ```bash
+        python -m venv venv
+        .\venv\Scripts\activate
+        ```
+    -   *On macOS/Linux:*
+        ```bash
+        python3 -m venv venv
+        source venv/bin/activate
+        ```
+
+3.  **Install the required packages:**
+    (First, create a `requirements.txt` file in your main folder with the word `Flask` inside it).
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4.  **Run the Flask application:**
+    ```bash
+    python app.py
+    ```
+
+5.  **View the website:**
+    Open your web browser and navigate to `http://127.0.0.1:5000`.
+
+---
+
+### Contact
+
+Muskan Verma
+
+-   **LinkedIn:** [linkedin.com/in/muskan-verma-ai-engineer](https://linkedin.com/in/muskan-verma-ai-engineer)
+-   **GitHub:** [github.com/MuskanVerma024](https://github.com/MuskanVerma024)
