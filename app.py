@@ -38,6 +38,3 @@ def submit_form():
         return redirect(url_for('home') + '#contact')
 
 # This block allows you to run the app directly with 'python app.py'
-if __name__ == '__main__':
-    # debug=True enables auto-reload on code changes and provides a debugger
-    app.run(debug=True)
