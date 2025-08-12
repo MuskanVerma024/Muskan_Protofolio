@@ -17,590 +17,10 @@
 
   <!-- AOS Library for Scroll Animations -->
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  
+  <!-- Your Custom CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
-  <style>
-    /* CSS Variables for Theming (Light/Dark Mode) */
-    :root {
-      --bg-color: #f4f7fc;
-      --text-color: #333;
-      --card-bg: #ffffff;
-      --shadow-color: rgba(0, 0, 0, 0.1);
-      --highlight-color: #6a5acd;
-      --highlight-text: #ffffff;
-      --secondary-color: #555;
-      --border-color: #e0e0e0;
-      --toggle-bg: #333;
-      --toggle-icon: '🌙';
-    }
-
-    [data-theme="dark"] {
-      --bg-color: #1a1a2e;
-      --text-color: #e0e0e0;
-      --card-bg: #162447;
-      --shadow-color: rgba(0, 0, 0, 0.4);
-      --highlight-color: #7f5af0;
-      --highlight-text: #ffffff;
-      --secondary-color: #a0a0a0;
-      --border-color: #444;
-      --toggle-bg: #fff;
-      --toggle-icon: '☀️';
-    }
-
-    /* General Styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      transition: background-color 0.3s, color 0.3s;
-      line-height: 1.7;
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 2rem;
-    }
-
-    h1, h2, h3 {
-      font-weight: 600;
-      color: var(--highlight-color);
-    }
-    
-    h2 {
-      font-size: 2.5rem;
-      text-align: center;
-      margin-bottom: 4rem; /* Increased margin for better spacing */
-      position: relative;
-    }
-
-    h2::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 4px;
-      background: var(--highlight-color);
-      border-radius: 2px;
-    }
-    
-    .highlight {
-      color: var(--highlight-color);
-    }
-
-    /* Dark Mode Toggle */
-    #darkToggle {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      border: none;
-      background-color: var(--card-bg);
-      color: var(--text-color);
-      font-size: 1.5rem;
-      cursor: pointer;
-      z-index: 1000;
-      box-shadow: 0 4px 10px var(--shadow-color);
-      transition: transform 0.2s;
-    }
-    #darkToggle:hover {
-      transform: scale(1.1);
-    }
-    #darkToggle::before {
-        content: var(--toggle-icon);
-    }
-
-
-    /* --- HERO SECTION: UPDATED --- */
-    .hero {
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      color: #fff;
-      position: relative;
-      perspective: 1000px; /* For 3D mouse effect */
-
-      /* New Background Image */
-      background-image: url('https://images.unsplash.com/photo-1597733336794-12d05021d510?q=80&w=1974&auto=format&fit=crop');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed; /* Creates a cool parallax effect */
-    }
-
-    /* New overlay for text readability */
-    .hero::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(26, 26, 46, 0.7); /* Adjust opacity here */
-        z-index: 1;
-    }
-
-    .hero-content {
-      position: relative; /* Places content above the overlay */
-      z-index: 2;
-      padding: 1rem;
-      transform-style: preserve-3d;
-      transition: transform 0.5s;
-    }
-
-    .profile-pic {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      border: 5px solid #fff;
-      box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
-      margin-bottom: 1.5rem;
-      transition: transform 0.3s ease-out;
-    }
-    
-    .profile-pic:hover {
-        transform: scale(1.1) rotateZ(5deg);
-    }
-
-
-    .hero h1 {
-      font-size: 3rem;
-      color: #fff;
-      margin-bottom: 0.5rem;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-    }
-
-    .hero p {
-      font-size: 1.5rem;
-      font-weight: 300;
-    }
-    
-    #typed-text {
-        color: #e0e0e0;
-        font-weight: 400;
-    }
-
-    .hero nav {
-      margin-top: 2rem;
-    }
-
-    .hero nav a {
-      color: #fff;
-      text-decoration: none;
-      margin: 0 15px;
-      font-size: 1.1rem;
-      font-weight: 400;
-      padding: 8px 15px;
-      border-radius: 20px;
-      transition: background-color 0.3s, transform 0.3s;
-      display: inline-block;
-    }
-
-    .hero nav a:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-      transform: translateY(-3px);
-    }
-    
-    /* --- END OF HERO SECTION UPDATE --- */
-
-
-    /* Section Styles */
-    section {
-      padding: 6rem 0;
-    }
-    
-    #about {
-        background: var(--card-bg);
-    }
-
-    .about-text p {
-      text-align: justify;
-      color: var(--secondary-color);
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    
-    /* Experience Section (Timeline) */
-    .timeline {
-        position: relative;
-        max-width: 900px;
-        margin: 0 auto;
-    }
-
-    .timeline::after {
-        content: '';
-        position: absolute;
-        width: 6px;
-        background-color: var(--highlight-color);
-        top: 0;
-        bottom: 0;
-        left: 50%;
-        margin-left: -3px;
-        border-radius: 3px;
-    }
-
-    .timeline-item {
-        padding: 10px 40px;
-        position: relative;
-        background-color: inherit;
-        width: 50%;
-    }
-    
-    /* The circles on the timeline */
-    .timeline-item::after {
-        content: '';
-        position: absolute;
-        width: 25px;
-        height: 25px;
-        right: -17px;
-        background-color: var(--card-bg);
-        border: 4px solid var(--highlight-color);
-        top: 15px;
-        border-radius: 50%;
-        z-index: 1;
-        transition: transform 0.3s;
-    }
-
-    .timeline-item:hover::after {
-        transform: scale(1.2);
-    }
-
-
-    .timeline-item.left {
-        left: 0;
-    }
-
-    .timeline-item.right {
-        left: 50%;
-    }
-    
-    .timeline-item.left::before {
-        content: " ";
-        height: 0;
-        position: absolute;
-        top: 22px;
-        width: 0;
-        z-index: 1;
-        right: 30px;
-        border: medium solid var(--card-bg);
-        border-width: 10px 0 10px 10px;
-        border-color: transparent transparent transparent var(--card-bg);
-    }
-
-    .timeline-item.right::before {
-        content: " ";
-        height: 0;
-        position: absolute;
-        top: 22px;
-        width: 0;
-        z-index: 1;
-        left: 30px;
-        border: medium solid var(--card-bg);
-        border-width: 10px 10px 10px 0;
-        border-color: transparent var(--card-bg) transparent transparent;
-    }
-    
-    .timeline-item.right::after {
-        left: -16px;
-    }
-
-    .timeline-content {
-        padding: 20px 30px;
-        background-color: var(--card-bg);
-        position: relative;
-        border-radius: 8px;
-        box-shadow: 0 5px 15px var(--shadow-color);
-        border: 1px solid var(--border-color);
-        transition: transform 0.3s;
-    }
-    
-    .timeline-content:hover {
-        transform: translateY(-5px);
-    }
-    
-    .timeline-content h3 {
-        font-size: 1.4rem;
-        margin-bottom: 5px;
-    }
-    
-    .timeline-content .date {
-        font-size: 0.9rem;
-        font-weight: 600;
-        color: var(--secondary-color);
-        margin-bottom: 10px;
-    }
-    
-    .timeline-content p {
-        font-size: 0.95rem;
-        color: var(--secondary-color);
-    }
-
-
-    /* Project Section */
-    #projects {
-        background: var(--card-bg);
-        perspective: 1500px;
-    }
-    
-    .project-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
-    }
-    
-    .project-card {
-      background: var(--bg-color);
-      border-radius: 15px;
-      padding: 2rem;
-      box-shadow: 0 10px 30px var(--shadow-color);
-      transition: transform 0.4s, box-shadow 0.4s;
-      border: 1px solid var(--border-color);
-      display: flex;
-      flex-direction: column;
-      transform-style: preserve-3d;
-    }
-
-    .project-card:hover {
-      transform: translateY(-10px) rotateX(10deg) rotateY(-5deg);
-      box-shadow: 0 20px 50px var(--shadow-color);
-    }
-
-    .project-card h3 {
-      margin-bottom: 1rem;
-      font-size: 1.5rem;
-    }
-    
-    .project-card p {
-        color: var(--secondary-color);
-        margin-bottom: 1rem;
-        flex-grow: 1;
-    }
-    
-    .project-card .tech-stack {
-        font-weight: 600;
-        color: var(--text-color);
-        margin-bottom: 1.5rem;
-    }
-
-    .project-links a {
-      text-decoration: none;
-      color: var(--highlight-color);
-      margin-right: 1.5rem;
-      font-weight: 600;
-      transition: color 0.3s;
-      position: relative;
-      display: inline-block;
-    }
-    
-    .project-links a::after {
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 2px;
-        bottom: 0;
-        left: 0;
-        background-color: var(--highlight-color);
-        transform: scaleX(0);
-        transform-origin: bottom right;
-        transition: transform 0.25s ease-out;
-    }
-    
-    .project-links a:hover::after {
-        transform: scaleX(1);
-        transform-origin: bottom left;
-    }
-
-
-    .project-links i {
-      margin-right: 5px;
-    }
-
-    /* Certificates Section */
-    .certificate-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 1.5rem;
-    }
-
-    .certificate-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      padding: 1.5rem;
-      border-radius: 10px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: transform 0.3s, box-shadow 0.3s;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .certificate-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 12px 24px var(--shadow-color);
-    }
-    
-    .certificate-card h3 {
-        font-size: 1.2rem;
-        margin-bottom: 0.5rem;
-    }
-    
-    .certificate-card p {
-        color: var(--secondary-color);
-        font-size: 0.9rem;
-        margin-bottom: 1rem;
-    }
-    
-    .certificate-card .btn {
-        text-decoration: none;
-        color: var(--highlight-text);
-        background: var(--highlight-color);
-        padding: 10px 15px;
-        border-radius: 5px;
-        text-align: center;
-        font-weight: 600;
-        transition: background-color 0.3s, transform 0.2s;
-        display: block; /* Make it a block to fill width */
-    }
-    
-    .certificate-card .btn:hover {
-        background: #5a4ab9;
-        transform: scale(1.05);
-    }
-
-    /* Contact Section */
-    #contact {
-        background: var(--card-bg);
-    }
-    
-    .contact-form {
-      max-width: 700px;
-      margin: 0 auto 2rem auto;
-      text-align: center;
-    }
-
-    .contact-form input, .contact-form textarea {
-      width: 100%;
-      padding: 15px;
-      margin-bottom: 1rem;
-      border-radius: 8px;
-      border: 1px solid var(--border-color);
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      font-family: 'Poppins', sans-serif;
-      font-size: 1rem;
-      transition: border-color 0.3s, box-shadow 0.3s;
-    }
-
-    .contact-form input:focus, .contact-form textarea:focus {
-      outline: none;
-      border-color: var(--highlight-color);
-      box-shadow: 0 0 8px rgba(106, 90, 205, 0.5);
-    }
-
-    .contact-form button {
-      padding: 15px 30px;
-      border: none;
-      background: var(--highlight-color);
-      color: var(--highlight-text);
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 1.1rem;
-      font-weight: 600;
-      transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-    }
-
-    .contact-form button:hover {
-      background: #5a4ab9;
-      transform: translateY(-3px);
-      box-shadow: 0 5px 15px rgba(106, 90, 205, 0.4);
-    }
-    
-    .contact-links {
-        text-align: center;
-    }
-
-    .contact-links a {
-      font-size: 2rem;
-      margin: 0 1rem;
-      color: var(--secondary-color);
-      transition: color 0.3s, transform 0.3s;
-      display: inline-block;
-    }
-    
-    .contact-links a:hover {
-        color: var(--highlight-color);
-        transform: scale(1.2) rotate(10deg);
-    }
-    
-    .contact-email {
-        text-align: center;
-        margin-top: 2rem;
-    }
-    .contact-email a {
-        color: var(--highlight-color);
-        font-weight: 600;
-        text-decoration: none;
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 2rem;
-      background: #0f0f1a;
-      color: var(--secondary-color);
-      border-top: 1px solid var(--border-color);
-    }
-
-    /* Responsive Design */
-    @media screen and (max-width: 768px) {
-        .hero h1 { font-size: 2.5rem; }
-        .hero p { font-size: 1.2rem; }
-        h2 { font-size: 2rem; }
-        .about-content { flex-direction: column; text-align: center; }
-
-        .hero {
-            background-attachment: scroll; /* Disable fixed attachment on mobile for performance */
-        }
-        
-        /* Timeline adjustments for mobile */
-        .timeline::after {
-            left: 31px;
-        }
-        .timeline-item {
-            width: 100%;
-            padding-left: 70px;
-            padding-right: 25px;
-        }
-        .timeline-item.left::before, .timeline-item.right::before {
-            left: 60px;
-            border: medium solid var(--card-bg);
-            border-width: 10px 10px 10px 0;
-            border-color: transparent var(--card-bg) transparent transparent;
-        }
-        .timeline-item.left::after, .timeline-item.right::after {
-            left: 15px;
-        }
-        .timeline-item.right {
-            left: 0%;
-        }
-    }
-
-  </style>
 </head>
 <body>
 
@@ -610,7 +30,7 @@
   <!-- Hero Section -->
   <header class="hero" id="home">
     <div class="hero-content" data-aos="fade-in">
-      <img src="images/bot.jpg " alt="Muskan" class="profile-pic"/>
+      <img src="{{ url_for('static', filename='img/bot.jpg') }}" alt="Muskan" class="profile-pic"/> 
       <h1>I'm <span class="highlight">Muskan</span></h1>
       <p><span id="typed-text"></span></p>
       <nav>
@@ -646,7 +66,6 @@
             <h2 data-aos="fade-up">My Experience</h2>
             <div class="timeline" data-aos="fade-up">
                 
-                <!-- Timeline Item 1 -->
                 <div class="timeline-item left" data-aos="fade-right">
                     <div class="timeline-content">
                         <h3>Python developer Intern</h3>
@@ -657,7 +76,6 @@
                     </div>
                 </div>
 
-                <!-- Timeline Item 2 -->
                 <div class="timeline-item right" data-aos="fade-left">
                     <div class="timeline-content">
                         <h3>Vice President</h3>
@@ -665,8 +83,6 @@
                         <p>
                            Led technical initiatives, workshops, and events fostering innovation and collaboration in AIML.
 Coordinated with peers and faculty to organize coding contests, project showcases, and knowledge sessions.
-
-
                         </p>
                     </div>
                 </div>
@@ -681,7 +97,6 @@ Participated in community discussions and skill-building programs to empower wom
                     </div>
                 </div>
                 
-
             </div>
         </div>
     </section>
@@ -760,32 +175,32 @@ Participated in community discussions and skill-building programs to empower wom
             <div class="certificate-card">
               <h3>Digital Productivity with AI</h3>
               <p><strong>Issued by:</strong> UNICEF + Microsoft</p>
-              <a href="Digital Productivity with AI.pdf" class="btn" target="_blank">View Certificate</a>
+              <a href="{{ url_for('static', filename='certificates/Digital Productivity with AI.pdf') }}" class="btn" target="_blank">View Certificate</a>
             </div>
             <div class="certificate-card">
               <h3>Data Science and Analytics</h3>
               <p><strong>Issued by:</strong> HP Life</p>
-              <a href="certificate (1).pdf" class="btn" target="_blank">View Certificate</a>
+              <a href="{{ url_for('static', filename='certificates/certificate (1).pdf') }}" class="btn" target="_blank">View Certificate</a>
             </div>
             <div class="certificate-card">
               <h3>Skill Certification in JavaScript</h3>
               <p><strong>Issued by:</strong> OneRoadmap</p>
-              <a href="JavaScript-Certificate.pdf" class="btn" target="_blank">View Certificate</a>
+              <a href="{{ url_for('static', filename='certificates/JavaScript-Certificate.pdf') }}" class="btn" target="_blank">View Certificate</a>
             </div>
             <div class="certificate-card">
               <h3>Building LLM Applications</h3>
               <p><strong>Issued by:</strong> NVIDIA</p>
-              <a href="My Learning _ NVIDIA.pdf" class="btn" target="_blank">View Certificate</a>
+              <a href="{{ url_for('static', filename='certificates/My Learning _ NVIDIA.pdf') }}" class="btn" target="_blank">View Certificate</a>
             </div>
             <div class="certificate-card">
               <h3>ChatGPT for Everyone</h3>
               <p><strong>Issued by:</strong> GUVI (by HCL)</p>
-              <a href="chatgpt.jpg" class="btn" target="_blank">View Certificate</a>
+              <a href="{{ url_for('static', filename='certificates/chatgpt.jpg') }}" class="btn" target="_blank">View Certificate</a>
             </div>
             <div class="certificate-card">
               <h3>C Certification</h3>
               <p><strong>Issued by:</strong> Spoken Tutorial, IIT Bombay</p>
-              <a href="c_certifiacte.jpg" class="btn" target="_blank">View Certificate</a>
+              <a href="{{ url_for('static', filename='certificates/c_certifiacte.jpg') }}" class="btn" target="_blank">View Certificate</a>
             </div>
         </div>
       </div>
@@ -795,12 +210,26 @@ Participated in community discussions and skill-building programs to empower wom
     <section id="contact">
       <div class="container" data-aos="fade-up">
         <h2>Get In Touch</h2>
-        <form class="contact-form" action="https://formspree.io/f/your_form_id" method="POST"> <!-- Replace with your Formspree ID -->
+        
+        <!-- Flash Message Display -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <div class="flash-messages">
+              {% for category, message in messages %}
+                <div class="flash {{ category }}">{{ message }}</div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+
+        <!-- Set the action to the Flask route -->
+        <form class="contact-form" action="{{ url_for('submit_form') }}" method="POST">
           <input type="text" name="name" placeholder="Your Name" required />
           <input type="email" name="email" placeholder="Your Email" required />
           <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
           <button type="submit">Send Message</button>
         </form>
+
         <div class="contact-links">
           <a href="https://linkedin.com/in/muskan-verma-ai-engineer" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
           <a href="https://github.com/MuskanVerma024" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
@@ -825,73 +254,9 @@ Participated in community discussions and skill-building programs to empower wom
 
   <!-- GSAP for advanced animations -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+  
+  <!-- Your Custom JS -->
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
-
-  <script>
-    // 1. Initialize AOS (Animate on Scroll)
-    AOS.init({
-        duration: 800,
-        once: true,
-        offset: 50,
-    });
-
-    // 2. Typed.js Animation for Hero Section
-    new Typed('#typed-text', {
-      strings: ['AIML Enthusiast', 'Web Developer', 'Problem Solver', 'Tech Innovator'],
-      typeSpeed: 70,
-      backSpeed: 50,
-      loop: true,
-      smartBackspace: true,
-    });
-    
-    // 3. Dark Mode Toggle Functionality
-    const darkToggle = document.getElementById('darkToggle');
-    const body = document.body;
-
-    // Check for saved theme in localStorage
-    if (localStorage.getItem('theme') === 'dark') {
-      body.setAttribute('data-theme', 'dark');
-    }
-
-    darkToggle.addEventListener('click', () => {
-      if (body.getAttribute('data-theme') === 'dark') {
-        body.removeAttribute('data-theme');
-        localStorage.removeItem('theme');
-      } else {
-        body.setAttribute('data-theme', 'dark');
-        localStorage.setItem('theme', 'dark');
-      }
-    });
-
-    // 4. 3D Hero Content Mouse Move Effect
-    const hero = document.querySelector('.hero');
-    const heroContent = document.querySelector('.hero-content');
-
-    hero.addEventListener('mousemove', (e) => {
-        const { clientX, clientY } = e;
-        const x = (window.innerWidth / 2 - clientX) / 25;
-        const y = (window.innerHeight / 2 - clientY) / 25;
-
-        gsap.to(heroContent, {
-            duration: 1,
-            rotationY: x,
-            rotationX: y,
-            transformPerspective: 1000,
-            ease: "power2.out"
-        });
-    });
-    
-    // Reset hero content transform on mouse leave
-    hero.addEventListener('mouseleave', () => {
-        gsap.to(heroContent, {
-            duration: 1,
-            rotationY: 0,
-            rotationX: 0,
-            ease: "power2.out"
-        });
-    });
-
-  </script>
 </body>
-
 </html>
